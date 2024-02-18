@@ -14,7 +14,7 @@ async function loadHistory() {
         const data = await fs.readFile('memory.json', 'utf8')
         return JSON.parse(data)
     } catch (error) {
-        console.error('Fehler beim Laden der History:', error)
+        console.error('Error when loading the history:', error)
         return [] // Return empty array if file cannot be read
     }
 }
@@ -23,7 +23,7 @@ async function saveHistory(history) {
     try {
         await fs.writeFile('memory.json', JSON.stringify(history, null, 2), 'utf8')
     } catch (error) {
-        console.error('Fehler beim Speichern der History:', error)
+        console.error('Error when saving the history:', error)
     }
 }
 
