@@ -53,8 +53,9 @@ const newMessage = async (message) => {
     }
 }
 
+//
 const chat = async () => {
-    console.log('Der Chatbot ist gestartet. Schreibe "exit" um den Chatbot zu beenden.')
+    console.log('The conversation has started. Write "exit" to it.')
     const history = await loadHistory() // Load the initial history
 
     const start = () => {
