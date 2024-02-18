@@ -55,7 +55,7 @@ const newMessage = async (message) => {
 
 //
 const chat = async () => {
-    console.log('The conversation has started. Write "exit" to it.')
+    console.log('The conversation has started. Write "exit" to end it.')
     const history = await loadHistory() // Load the initial history
 
     const start = () => {
