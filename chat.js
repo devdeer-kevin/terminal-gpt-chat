@@ -59,7 +59,7 @@ const chat = async () => {
     const history = await loadHistory() // Load the initial history
 
     const start = () => {
-        rl.question('Du: ', async (userInput) => {
+        rl.question('You: ', async (userInput) => {
             if (userInput.toLowerCase() === 'exit') {
                 rl.close()
                 return
