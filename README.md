@@ -1,4 +1,4 @@
-# Node.js Chatbot with OpenAI
+# Node.js Console Chatbot with OpenAI
 
 This repository contains a Node.js console application designed to facilitate interactive conversations using OpenAI's GPT-4. It leverages the OpenAI API to create dynamic and intelligent responses based on user input, maintaining a conversational history to provide context for each interaction.
 
