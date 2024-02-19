@@ -30,7 +30,7 @@ async function saveHistory(history) {
 const newMessage = async (message) => {
     const history = await loadHistory()
     const stream = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: 'gpt-4-0613',
         messages: [...history, message],
         temperature: 1,
         stream: true,
