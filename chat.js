@@ -2,11 +2,13 @@ import { openai } from './openai.js'
 import readline from 'node:readline'
 import fs from 'node:fs/promises'
 
+// Create a readline interface to read user input from the console
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 })
 
+// Method to format the user input into a message object
 const formatMessage = (userInput) => ({ role: 'user', content: userInput })
 
 // Method to load the chat history from a file
