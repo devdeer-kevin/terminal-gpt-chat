@@ -39,6 +39,30 @@ async function saveHistory(history) {
     }
 }
 
+// Method to reset the chat history memory to its initial state
+const resetMemoryFile = async () => {
+    // Path to memory.json
+    const filePath = './memory.json'
+
+    try {
+        // Read the file asynchronisly with await
+        const data = await fs.readFile(filePath, 'utf8')
+
+        // Parse the JSON data
+        const memoryData = JSON.parse(data)
+
+        // Keep only the first object in the array
+        const newData = memoryData.length > 0 ? [memoryData[0]] : []
+
+        // Remove the placeholder and proceed with writing the updated memory to the file
+        await fs.writeFile(filePath, JSON.stringify(newData, null, 2))
+
+        console.log("Memory reset complete! Let's start over - What's next?")
+    } catch (err) {
+        console.error('An error occured:', err)
+    }
+}
+
 // Method to send a new message to the chat completion API
 const newMessage = async (message) => {
     // Load the chat history by calling the 'loadHistory' function
@@ -82,7 +106,7 @@ const newMessage = async (message) => {
 // Method to initiate the chat process
 const chat = async () => {
     // Logs an initial message to the console to indicate the conversation has started
-    console.log('The conversation has started. Write "exit" to end it.')
+    console.log('The conversation has started. Write "reset" to start fresh or "exit" to end it.')
 
     // Defines the 'start' function that will be used to initiate each round of conversation
     const start = () => {
@@ -91,6 +115,11 @@ const chat = async () => {
             // If the user types 'exit', the readline interface is closed and the function returns
             if (userInput.toLowerCase() === 'exit') {
                 rl.close()
+                return
+            }
+            if (userInput.toLowerCase() === 'reset') {
+                await resetMemoryFile()
+                start()
                 return
             }
             // Formats the user input into a message object with 'user' role
