@@ -4,8 +4,10 @@ This repository contains a Node.js console application designed to facilitate in
 
 ## Features
 
--   **Dynamic Conversation Handling**: Utilizes OpenAI's GPT-4 model for generating responses, streamed in chunks for real-time interaction.
+-   **Dynamic Conversation Handling**: Utilizes OpenAI's GPT-4-turbo model for generating responses, streamed in chunks for real-time interaction.
 -   **Persistent History**: Conversations are stored and managed, allowing for context-aware interactions.
+-   **Terminal Interface**: Simple and intuitive console-based interface for easy interaction.
+-   **Easy History Reset**: A simple command to reset the conversation history and start a new conversation. Without deleting the system message.
 -   **Customizable Responses**: Easily adaptable script for personalized conversation flows.
 -   **Privacy-Focused**: Instructions are provided to ensure conversation data is kept local and private.
 
