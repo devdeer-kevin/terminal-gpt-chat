@@ -118,7 +118,7 @@ const newImage = async (message) => {
 
 const chat = async () => {
     // Log a welcome message to the console
-    console.log('The conversation has started. Write "reset" to start fresh or "exit" to end it.')
+    console.log('The conversation has started. Write "[image] your image prompt", e.g. "[image] dog" to create an image. Write "reset" to start fresh or "exit" to end it.')
     // Method to process the user input and take appropriate actions
     const processUserInput = async (userInput) => {
         switch (userInput.toLowerCase()) {
