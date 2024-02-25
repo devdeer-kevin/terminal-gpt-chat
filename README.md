@@ -1,6 +1,6 @@
 # Node.js Terminal Chatbot with OpenAI
 
-This repository contains a Node.js terminal application designed to facilitate interactive conversations using OpenAI's GPT-4. It leverages the OpenAI API to create dynamic and intelligent responses based on user input, maintaining a conversational history to provide context for each interaction.
+This repository contains a Node.js terminal application designed to facilitate interactive conversations using OpenAI's GPT-4-turbo. It leverages the OpenAI API to create dynamic and intelligent responses based on user input, maintaining a conversational history to provide context for each interaction.
 
 ## Features
 
