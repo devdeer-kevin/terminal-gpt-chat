@@ -103,43 +103,55 @@ const newMessage = async (message) => {
     }
 }
 
-// Method to initiate the chat process
-const chat = async () => {
-    // Logs an initial message to the console to indicate the conversation has started
-    console.log('The conversation has started. Write "reset" to start fresh or "exit" to end it.')
-
-    // Defines the 'start' function that will be used to initiate each round of conversation
-    const start = () => {
-        // Prompts the user for input, using 'You: ' as the prompt message
-        rl.question('You: ', async (userInput) => {
-            // If the user types 'exit', the readline interface is closed and the function returns
-            if (userInput.toLowerCase() === 'exit') {
-                rl.close()
-                return
-            }
-            if (userInput.toLowerCase() === 'reset') {
-                await resetMemoryFile()
-                start()
-                return
-            }
-            // Formats the user input into a message object with 'user' role
-            const userMessage = formatMessage(userInput)
-
-            // Sends the formatted message to the OpenAI API and waits for the response
-            const response = await newMessage(userMessage)
-            // If a response is received, it logs an empty line to the console for readability
-            if (response) {
-                console.log(`\n`)
-            }
-
-            // Calls the 'start' function again to continue the conversation loop
-            start()
-        })
-    }
-
-    // Calls the 'start' function for the first time to begin the conversation
-    start()
+// [beta] Method to create a new image using the OpenAI API
+const newImage = async (message) => {
+    // // Create a new image using the OpenAI API, passing the message as the prompt
+    const response = await openai.images.generate({
+        model: 'dall-e-3',
+        prompt: message,
+    })
+    // Extract the image URL from the response and return it
+    const imageUrl = response.data[0].url
+    // Return the image URL
+    return imageUrl
 }
 
-// Calls the 'chat' function to start the entire chat process
+const chat = async () => {
+    // Log a welcome message to the console
+    console.log('The conversation has started. Write "reset" to start fresh or "exit" to end it.')
+    // Method to process the user input and take appropriate actions
+    const processUserInput = async (userInput) => {
+        switch (userInput.toLowerCase()) {
+            case 'exit':
+                rl.close()
+                break
+            case 'reset':
+                await resetMemoryFile()
+                start()
+                break
+            default:
+                // Check if the user input starts with '[image]' to send an image prompt to the API
+                if (userInput.startsWith('[image]')) {
+                    const imagePrompt = userInput.slice(7).trim()
+                    const responseUrl = await newImage(imagePrompt)
+                    console.log(responseUrl, '\n')
+                } else {
+                    // Otherwise, send the user input to the chat completion API
+                    const userMessage = formatMessage(userInput)
+                    const response = await newMessage(userMessage)
+                    if (response) {
+                        console.log(`\n`)
+                    }
+                }
+                start()
+        }
+    }
+    // Method to start the chat interface
+    const start = () => {
+        rl.question('You: ', (userInput) => processUserInput(userInput))
+    }
+    // Call the 'start' method to begin the chat interface
+    start()
+}
+// Call the 'chat' method to start the conversation
 chat()
