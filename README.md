@@ -5,6 +5,7 @@ This repository contains a Node.js terminal application designed to facilitate i
 ## Features
 
 -   **Dynamic Conversation Handling**: Utilizes OpenAI's GPT-4-turbo model for generating responses, streamed in chunks for real-time interaction.
+- **[beta] Image Generation**: The chatbot can generate images using the OpenAI API.
 -   **Persistent History**: Conversations are stored and managed, allowing for context-aware interactions.
 -   **Terminal Interface**: Simple and intuitive console-based interface for easy interaction.
 -   **Easy History Reset**: A simple command to reset the conversation history and start a new conversation. Without deleting the system message.
