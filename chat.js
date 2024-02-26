@@ -1,67 +1,15 @@
 import { openai } from './openai.js'
 import readline from 'node:readline'
-import fs from 'node:fs/promises'
+
+import saveHistory from './utils/saveHistory.mjs'
+import loadHistory from './utils/loadHistory.mjs'
+import resetMemoryFile from './utils/resetMemoryFile.mjs'
 
 // Create a readline interface to read user input from the console
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 })
-
-// Method to format the user input into a message object
-const formatMessage = (userInput) => ({ role: 'user', content: userInput })
-
-// Method to load the chat history from a file
-async function loadHistory() {
-    try {
-        // Attempt to read the 'memory.json' file with UTF-8 encoding
-        const data = await fs.readFile('memory.json', 'utf8')
-        // Parse the JSON data into an object and return it
-        return JSON.parse(data)
-    } catch (error) {
-        // If an error occurs (e.g., file not found), log the error
-        console.error('Error when loading the history:', error)
-        // Return an empty array to signify no prior history
-        return []
-    }
-}
-
-// Method to save the chat history to a file
-async function saveHistory(history) {
-    try {
-        // Convert the history object into a string with JSON formatting
-        const historyString = JSON.stringify(history, null, 2)
-        // Write the string to 'memory.json' with UTF-8 encoding
-        await fs.writeFile('memory.json', historyString, 'utf8')
-    } catch (error) {
-        // If an error occurs during the file write process, log the error
-        console.error('Error when saving the history:', error)
-    }
-}
-
-// Method to reset the chat history memory to its initial state
-const resetMemoryFile = async () => {
-    // Path to memory.json
-    const filePath = './memory.json'
-
-    try {
-        // Read the file asynchronisly with await
-        const data = await fs.readFile(filePath, 'utf8')
-
-        // Parse the JSON data
-        const memoryData = JSON.parse(data)
-
-        // Keep only the first object in the array
-        const newData = memoryData.length > 0 ? [memoryData[0]] : []
-
-        // Remove the placeholder and proceed with writing the updated memory to the file
-        await fs.writeFile(filePath, JSON.stringify(newData, null, 2))
-
-        console.log("Memory reset complete! Let's start over - What's next?")
-    } catch (err) {
-        console.error('An error occured:', err)
-    }
-}
 
 // Method to send a new message to the chat completion API
 const newMessage = async (message) => {
