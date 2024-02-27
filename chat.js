@@ -4,6 +4,7 @@ import readline from 'node:readline'
 import saveHistory from './utils/saveHistory.mjs'
 import loadHistory from './utils/loadHistory.mjs'
 import resetMemoryFile from './utils/resetMemoryFile.mjs'
+import formatMessage from './utils/formatMessage.mjs'
 
 // Create a readline interface to read user input from the console
 const rl = readline.createInterface({
