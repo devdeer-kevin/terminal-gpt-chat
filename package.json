@@ -11,8 +11,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "dotenv": "^16.3.1",
-        "openai": "^4.24.1",
+        "dotenv": "^16.4.5",
+        "openai": "^4.29.0",
         "openai-threads": "^1.0.3"
     }
 }
