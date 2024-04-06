@@ -12,7 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "dotenv": "^16.4.5",
-        "openai": "^4.29.0",
+        "openai": "^4.33.0",
         "openai-threads": "^1.0.3"
     }
 }
