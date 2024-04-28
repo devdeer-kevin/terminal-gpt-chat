@@ -56,7 +56,9 @@ const newMessage = async (message) => {
 const newImage = async (message) => {
     // // Create a new image using the OpenAI API, passing the message as the prompt
     const response = await openai.images.generate({
+        // Specify the model to use for image generation
         model: 'dall-e-3',
+        // Pass the message as the prompt for the image generation
         prompt: message,
     })
     // Extract the image URL from the response and return it
