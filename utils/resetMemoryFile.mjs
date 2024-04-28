@@ -20,7 +20,7 @@ const resetMemoryFile = async () => {
 
         console.log("Memory reset complete! Let's start over - What's next?")
     } catch (err) {
-        console.error('An error occured:', err)
+        console.error('An error occurred:', err)
     }
 }
 
