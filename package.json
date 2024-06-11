@@ -13,6 +13,7 @@
     "dependencies": {
         "dotenv": "^16.4.5",
         "openai": "^4.38.5",
-        "openai-threads": "^1.0.3"
+        "openai-threads": "^1.0.3",
+        "ts-node": "^10.9.2"
     }
 }
