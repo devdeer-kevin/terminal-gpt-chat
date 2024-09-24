@@ -18,7 +18,7 @@ const newMessage = async (message) => {
     const history = await loadHistory()
     // Create a new chat completion using the OpenAI API, passing the current chat history and the new message
     const stream = await openai.chat.completions.create({
-        model: 'gpt-4-turbo-preview', // Specify the model to use
+        model: 'chatgpt-4o-latest', // Specify the model to use
         messages: [...history, message], // Combine the history with the new message
         temperature: 1, // Set the temperature for randomness in the response
         stream: true, // Enable streaming of the response
